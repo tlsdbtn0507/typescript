@@ -15,3 +15,20 @@ interface Dropdown<t>{
 
 const obj:Dropdown<string> = {value:'av',selected:false}
 //<>안의 타입에 따라 value에 넣어줘야 할 값이 바뀜
+
+//keyof로 타입제한
+interface ShoppingItem{
+    name:string,
+    price:number,
+    stock:number
+}
+
+function getShoppingItemOption<t extends keyof ShoppingItem>(itemOption:t):t{
+    return itemOption
+}
+//위에 처럼 하면 getShoppingItemOption함수의 매개변수로는 ShoppingIte의 인자(name, price, stock)에서만 받을 수 있다
+
+// getShoppingItemOption(1)
+// getShoppingItemOption('gw')
+getShoppingItemOption("name")//getShoppingItemOption에 지정한 타입(이름)만 쓸 수 있음
+
